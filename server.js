@@ -60,6 +60,7 @@ require("dotenv").config();
 const connectDB = require("./dbinit");
 const userRoutes = require("./routes/user");
 const donationRoutes = require("./routes/donations");
+const institutionRoutes = require("./routes/institution");
 
 const app = express();
 const PORT = process.env.PORT || 8080;
@@ -80,6 +81,7 @@ app.get("/", (req, res) => {
 
 app.use("/users", userRoutes);
 app.use("/donations", donationRoutes);
+app.use("/institutions", institutionRoutes);
 
 app.listen(PORT, () => {
   console.log(`Server is running on PORT ${PORT}`);
