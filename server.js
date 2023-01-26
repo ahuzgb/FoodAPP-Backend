@@ -62,7 +62,7 @@ const userRoutes = require("./routes/user");
 const donationRoutes = require("./routes/donations");
 
 const app = express();
-const PORT = process.env.PORT;
+const PORT = process.env.PORT || 8080;
 
 connectDB();
 
