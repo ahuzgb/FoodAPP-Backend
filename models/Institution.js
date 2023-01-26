@@ -20,4 +20,8 @@ const InstitutionSchema = new Schema({
   },
 });
 
-module.exports = Institution = mongoose.model("institution", InstitutionSchema);
+module.exports = Institution = mongoose.model(
+  "Institution",
+  InstitutionSchema,
+  "institutions"
+);

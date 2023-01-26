@@ -1,14 +1,22 @@
 const Donations = require("../models/Donations");
+const Institution = require("../models/Institution");
 
 const createDonation = async (req, res) => {
-  const { article_name, expiration_date, weight, quantity, category } =
-    req.body;
+  const {
+    article_name,
+    expiration_date,
+    weight,
+    quantity,
+    category,
+    institution,
+  } = req.body;
   const donation = new Donations({
     article_name,
     expiration_date,
     weight,
     quantity,
     category,
+    institution,
   });
   try {
     await donation.save();
@@ -20,7 +28,7 @@ const createDonation = async (req, res) => {
 
 const getDonations = async (req, res) => {
   try {
-    const donations = await Donations.find();
+    const donations = await Donations.find().populate("institution");
     return res.status(200).send({ success: true, data: donations });
   } catch (error) {
     return res.status(500).send({ success: false, error: error.message });

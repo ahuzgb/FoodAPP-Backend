@@ -6,7 +6,7 @@ const donationsSchema = new mongoose.Schema({
     required: true,
   },
   expiration_date: {
-    type: Date,
+    type: String,
     required: true,
   },
   weight: {
@@ -25,8 +25,12 @@ const donationsSchema = new mongoose.Schema({
     type: Date,
     default: Date.now,
   },
+  institution: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Institution",
+  },
 });
 
-const Donations = mongoose.model("Donations", donationsSchema);
+const Donations = mongoose.model("Donations", donationsSchema, "donations");
 
 module.exports = Donations;
