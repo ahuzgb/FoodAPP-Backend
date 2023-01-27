@@ -4,7 +4,7 @@ const router = express.Router();
 const {
   createDonation,
   getDonations,
-  getDonation,
+  getOneDonation,
   updateDonation,
 } = require("../controllers/donationsControllers");
 const requireAuth = require("../middlewares/requireAuth");
@@ -12,6 +12,6 @@ const requireAuth = require("../middlewares/requireAuth");
 app.use(requireAuth);
 
 router.route("/").get(getDonations).post(createDonation);
-router.route("/:id").get(getDonation).put(updateDonation);
+router.route("/:id").get(getOneDonation).put(updateDonation);
 
 module.exports = router;

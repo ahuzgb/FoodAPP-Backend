@@ -24,6 +24,10 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  donations: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Donations",
+  },
 });
 
 // creating a custom static method
@@ -79,7 +83,7 @@ userSchema.statics.login = async function (email, password) {
     throw Error("All fields must be filled");
   }
 
-  const user = await this.findOne({ email });
+  const user = await this.findOne({ email }).populate("donations");
 
   if (!user) {
     throw Error("Incorrect email");
@@ -94,4 +98,4 @@ userSchema.statics.login = async function (email, password) {
   return user;
 };
 
-module.exports = mongoose.model("user", userSchema);
+module.exports = mongoose.model("user", userSchema, "users");

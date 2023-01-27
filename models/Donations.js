@@ -29,6 +29,10 @@ const donationsSchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: "Institution",
   },
+  user: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "User",
+  },
 });
 
 const Donations = mongoose.model("Donations", donationsSchema, "donations");
