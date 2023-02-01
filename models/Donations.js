@@ -27,11 +27,11 @@ const donationsSchema = new mongoose.Schema({
   },
   institution: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: "Institution",
+    ref: "institution",
   },
   user: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: "User",
+    ref: "user",
   },
 });
 

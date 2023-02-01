@@ -32,7 +32,9 @@ const createDonation = async (req, res) => {
 const getDonations = async (req, res) => {
   try {
     //console.log(user_id);
-    const allDonations = await Donations.find().populate("institution");
+    const allDonations = await Donations.find()
+      .populate("institution user")
+      .exec();
     //const myDonations = await Donations.find({ user_id }).populate(
     //"institution"
     //);
@@ -43,20 +45,17 @@ const getDonations = async (req, res) => {
 };
 
 const getOneDonation = async (req, res) => {
+  console.log(req.params.id);
   try {
-    const { id } = req.params;
-    const donation = await Donations.findById(id)
-      .populate("institution")
-      .exec(function (err, don) {
-        if (err) return handleError(err);
-        console.log("The institution is %s", don.institution.institution);
-      });
+    const donation = await Donations.findById(req.params.id)
+      .populate("institution user")
+      .exec();
     if (!donation) {
       return res
         .status(404)
         .send({ success: false, message: "Donation not found" });
     }
-    return res.status(200).send({ success: true, data: donation });
+    return res.status(200).send(donation);
   } catch (error) {
     return res.status(500).send({ success: false, error: error.message });
   }

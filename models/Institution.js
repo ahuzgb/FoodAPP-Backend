@@ -21,7 +21,7 @@ const InstitutionSchema = new Schema({
 });
 
 module.exports = Institution = mongoose.model(
-  "Institution",
+  "institution",
   InstitutionSchema,
   "institutions"
 );
