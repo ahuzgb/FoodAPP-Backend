@@ -33,6 +33,10 @@ const donationsSchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: "user",
   },
+
+  user_id: {
+    type: String,
+  },
 });
 
 const Donations = mongoose.model("Donations", donationsSchema, "donations");

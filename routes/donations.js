@@ -9,7 +9,7 @@ const {
 } = require("../controllers/donationsControllers");
 const requireAuth = require("../middlewares/requireAuth");
 
-app.use(requireAuth);
+router.use(requireAuth);
 
 router.route("/").get(getDonations).post(createDonation);
 router.route("/:id").get(getOneDonation).put(updateDonation);
